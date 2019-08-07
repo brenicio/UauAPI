@@ -2,22 +2,14 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
+//Autoload do Slim Framework
 require '../vendor/autoload.php';
+
+//Inserindo dependencia do banco de dados
 require '../src/config/db.php';
 
-$app = new \Slim\App;
-$app->get('/hello/{name}/{sobrenome}', function (Request $request, Response $response, array $args) {
-    $name = $args['name'];
-    $sobrenome = $args['sobrenome'];
-    $response->getBody()->write("Hello, $name  $sobrenome");
-
-    return $response;
-});
-
-
-// Rotas das Unidades (Personalizações)
-require '../src/routes/unidades.php';
-
+// Rotas
+require '../src/routes/routes.php';
 
 //Executa o SLIM FRAMEWORK
 $app->run();
